@@ -54,6 +54,7 @@ int main(int argc, char* argv[]) {
     }
   }
 
+  sleep(1);
   kill(child2_pid, SIGUSR1);
   kill(child2_pid, SIGUSR2);
   pause();

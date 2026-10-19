@@ -56,7 +56,8 @@ int main(int argc, char* argv[]) {
 
         for (int i = 0; i < 50; i++) {
           ptr[i] = (unsigned char)(((ptr[i] - 5) * 2));
-          printf("[DECODED MESSAGE]: %s", ptr[i]);
+          // printf("[DECODED MESSAGE]: %s", ptr[i]);
+          printf("[DECODED MESSAGE]: %s\n", ptr);
         }
 
         kill(getppid(), SIGALRM);
