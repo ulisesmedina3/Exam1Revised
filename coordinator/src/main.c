@@ -56,20 +56,26 @@ int main(int argc, char* argv[]) {
 
   sleep(1);
   kill(child2_pid, SIGUSR1);
+  sleep(1);
+  cmd_alrm = 0;
   kill(child2_pid, SIGUSR2);
-  pause();
 
-  if(cmd_alrm){
-    cmd_alrm = 0;
-    kill(child1_pid, SIGUSR1);
+  while (!cmd_alrm) {
+    pause();
   }
 
-  pause();
-  if(cmd_alrm){
-    cmd_alrm = 0;
-    kill(child1_pid, SIGINT);
-    kill(child2_pid, SIGINT);
+  cmd_alrm = 0;
+
+  kill(child1_pid, SIGUSR1);
+
+  while (!cmd_alrm) {
+    pause();
   }
+
+  cmd_alrm = 0;
+
+  kill(child1_pid, SIGINT);
+  kill(child2_pid, SIGINT);
 
   wait(NULL);
   wait(NULL);
